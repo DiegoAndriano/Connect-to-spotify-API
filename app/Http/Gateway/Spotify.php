@@ -22,7 +22,7 @@ class Spotify implements Gateway
     public function getToken()
     {
         $bearer = base64_encode(config('app.SPOTIFY_CLIENT_ID') . ':' . config('app.SPOTIFY_CLIENT_SECRET'));
-        //"Content-Type" => "application/x-www-form-urlencoded",
+
         $req = Http::asForm()->withHeaders([
             "Authorization" => "Basic $bearer",
             "Content-Length" => "0",
