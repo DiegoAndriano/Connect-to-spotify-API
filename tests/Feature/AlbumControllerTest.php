@@ -44,7 +44,14 @@ class AlbumControllerTest extends TestCase
                     ]
                 ]
             ]
-        );;
+        );
+    }
 
+    /** @test */
+    public function it_returns_error_if_artist_doesnt_exist()
+    {
+        $this->set();
+
+        $this->get('/api/v1/albums?q=doesnt+exist')->assertSee("No artist found");
     }
 }

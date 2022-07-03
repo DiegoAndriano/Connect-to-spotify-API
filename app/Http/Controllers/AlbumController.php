@@ -7,6 +7,7 @@ use App\Http\Requests\SpotifyRequest;
 use App\UseCases\ConvertJsonAlbumsToAlbumObjects;
 use App\UseCases\GetAlbums;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AlbumController extends Controller
 {
@@ -21,8 +22,13 @@ class AlbumController extends Controller
     {
         $query = Str::of($request->q)->replace(' ', '+');
         $items = (new GetAlbums($this->spotify, $query))->handle();
+
+        if (!$items) {
+            return new JsonResponse('No artist found', 404);
+        }
+
         $albums[] = (new ConvertJsonAlbumsToAlbumObjects($items))->handle();
 
-        return collect($albums)->flatten()->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        return new JsonResponse(collect($albums)->flatten());
     }
 }

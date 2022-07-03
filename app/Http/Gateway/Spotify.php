@@ -3,6 +3,8 @@
 namespace App\Http\Gateway;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Spotify implements Gateway
 {
@@ -38,6 +40,10 @@ class Spotify implements Gateway
             ->get("$this->baseUrl/search?q=$query&type=artist");
 
         $req = json_decode($req->body(), true);
+
+        if(count($req['artists']['items']) === 0){
+            return null;
+        }
 
         return $req['artists']['items'][0]['id'];
     }

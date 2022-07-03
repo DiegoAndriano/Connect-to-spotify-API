@@ -3,7 +3,8 @@
 namespace App\UseCases;
 
 
-class GetAlbums implements BasicUseCase {
+class GetAlbums implements BasicUseCase
+{
 
     public $gateway;
     public $query;
@@ -18,6 +19,9 @@ class GetAlbums implements BasicUseCase {
     {
         $access_token = $this->gateway->getToken();
         $id = $this->gateway->getBandId($access_token, $this->query);
+        if (! $id) {
+            return null;
+        }
         return $this->gateway->getAlbums($access_token, $id);
     }
 }

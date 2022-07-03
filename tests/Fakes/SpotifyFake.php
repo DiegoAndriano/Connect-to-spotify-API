@@ -13,6 +13,9 @@ class SpotifyFake implements Gateway
 
     public function getBandId($access_token, $query)
     {
+        if($query == "doesnt+exist"){
+            return null;
+        }
         return '0SnyKkoyBaB2fG8IJH4xmU';
     }
 
