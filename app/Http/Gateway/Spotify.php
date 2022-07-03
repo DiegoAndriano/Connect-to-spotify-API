@@ -3,12 +3,9 @@
 namespace App\Http\Gateway;
 
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Spotify implements Gateway
 {
-
     private $baseUrl = "https://api.spotify.com/v1";
 
     private function getHeaders($access_token)
