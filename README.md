@@ -10,6 +10,7 @@ This assumes you've created your own spotify app from https://developer.spotify.
 - Fill SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET with your own
 - run ```php artisan key:generate```
 - run ```php artisan serve```
+- http://localhost:port/api/v1/albums/Los+Piojos
 
 ## Check written tutorial in:
 http://diegoandriano.com/web-books/connecting-to-spotifys-api
