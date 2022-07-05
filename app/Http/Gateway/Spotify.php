@@ -22,7 +22,6 @@ class Spotify implements Gateway
 
         $req = Http::asForm()->withHeaders([
             "Authorization" => "Basic $bearer",
-            "Content-Length" => "0",
         ])
             ->post("https://accounts.spotify.com/api/token", ["grant_type" => "client_credentials"]);
 
