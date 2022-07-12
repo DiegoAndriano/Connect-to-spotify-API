@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Gateway\Gateway;
-use App\Http\Requests\SpotifyRequest;
+use App\Http\Requests\AlbumRequest;
 use App\UseCases\ConvertJsonAlbumsToAlbumObjects;
 use App\UseCases\GetAlbums;
 use Illuminate\Support\Str;
@@ -18,7 +18,7 @@ class AlbumController extends Controller
         $this->spotify = $spotify;
     }
 
-    public function index(SpotifyRequest $request)
+    public function index(AlbumRequest $request)
     {
         $query = Str::of($request->q)->replace(' ', '+');
         $items = (new GetAlbums($this->spotify, $query))->handle();
